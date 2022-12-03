@@ -1,7 +1,7 @@
 // +build linux aix zos
 // +build !js
 
-package logrus
+package log
 
 import "golang.org/x/sys/unix"
 

@@ -1,6 +1,6 @@
 // +build !windows
 
-package logrus_test
+package log_test
 
 import (
 	"log/syslog"

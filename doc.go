@@ -1,5 +1,5 @@
 /*
-Package logrus is a structured logger for Go, completely API compatible with the standard library logger.
+package log is a structured logger for Go, completely API compatible with the standard library logger.
 
 
 The simplest way to use Logrus is simply the package-level exported logger:
@@ -23,4 +23,4 @@ Output:
 
 For a full guide visit https://github.com/sirupsen/logrus
 */
-package logrus
+package log
