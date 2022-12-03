@@ -1,4 +1,4 @@
-module github.com/sirupsen/logrus/ci
+module github.com/uncle-gua/log/ci
 
 go 1.15
 

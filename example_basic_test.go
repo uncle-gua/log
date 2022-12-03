@@ -3,7 +3,7 @@ package log_test
 import (
 	"os"
 
-	"github.com/sirupsen/logrus"
+	"github.com/uncle-gua/log"
 )
 
 func Example_basic() {
