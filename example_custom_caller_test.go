@@ -10,10 +10,10 @@ import (
 )
 
 func ExampleJSONFormatter_CallerPrettyfier() {
-	l := logrus.New()
+	l := log.New()
 	l.SetReportCaller(true)
 	l.Out = os.Stdout
-	l.Formatter = &logrus.JSONFormatter{
+	l.Formatter = &log.JSONFormatter{
 		DisableTimestamp: true,
 		CallerPrettyfier: func(f *runtime.Frame) (string, string) {
 			s := strings.Split(f.Function, ".")

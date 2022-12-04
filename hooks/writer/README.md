@@ -1,4 +1,4 @@
-# Writer Hooks for Logrus
+# Writer Hooks for log
 
 Send logs of given levels to any object with `io.Writer` interface.
 

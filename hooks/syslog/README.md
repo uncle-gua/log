@@ -1,4 +1,4 @@
-# Syslog Hooks for Logrus <img src="http://i.imgur.com/hTeVwmJ.png" width="40" height="40" alt=":walrus:" class="emoji" title=":walrus:"/>
+# Syslog Hooks for log <img src="http://i.imgur.com/hTeVwmJ.png" width="40" height="40" alt=":walrus:" class="emoji" title=":walrus:"/>
 
 ## Usage
 
@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-  log       := logrus.New()
+  log       := log.New()
   hook, err := lSyslog.NewSyslogHook("udp", "localhost:514", syslog.LOG_INFO, "")
 
   if err == nil {
@@ -29,7 +29,7 @@ import (
 )
 
 func main() {
-  log       := logrus.New()
+  log       := log.New()
   hook, err := lSyslog.NewSyslogHook("", "", syslog.LOG_INFO, "")
 
   if err == nil {

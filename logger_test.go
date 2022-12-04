@@ -24,8 +24,8 @@ func TestFieldValueError(t *testing.T) {
 	if err := json.Unmarshal(buf.Bytes(), &data); err != nil {
 		t.Error("unexpected error", err)
 	}
-	_, ok := data[FieldKeyLogrusError]
-	require.True(t, ok, `cannot found expected "logrus_error" field: %v`, data)
+	_, ok := data[FieldKeylogError]
+	require.True(t, ok, `cannot found expected "log_error" field: %v`, data)
 }
 
 func TestNoFieldValueError(t *testing.T) {
@@ -42,7 +42,7 @@ func TestNoFieldValueError(t *testing.T) {
 	if err := json.Unmarshal(buf.Bytes(), &data); err != nil {
 		t.Error("unexpected error", err)
 	}
-	_, ok := data[FieldKeyLogrusError]
+	_, ok := data[FieldKeylogError]
 	require.False(t, ok)
 }
 
@@ -70,7 +70,7 @@ func TestWarninglnNotEqualToWarning(t *testing.T) {
 
 type testBufferPool struct {
 	buffers []*bytes.Buffer
-	get int
+	get     int
 }
 
 func (p *testBufferPool) Get() *bytes.Buffer {

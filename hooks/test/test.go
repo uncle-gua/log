@@ -1,4 +1,4 @@
-// The Test package is used for testing logrus.
+// The Test package is used for testing log.
 // It provides a simple hooks which register logged messages.
 package test
 
@@ -14,7 +14,7 @@ type Hook struct {
 	// Entries is an array of all entries that have been received by this hook.
 	// For safe access, use the AllEntries() method, rather than reading this
 	// value directly.
-	Entries []logrus.Entry
+	Entries []log.Entry
 	mu      sync.RWMutex
 }
 
@@ -22,14 +22,14 @@ type Hook struct {
 func NewGlobal() *Hook {
 
 	hook := new(Hook)
-	logrus.AddHook(hook)
+	log.AddHook(hook)
 
 	return hook
 
 }
 
 // NewLocal installs a test hook for a given local logger.
-func NewLocal(logger *logrus.Logger) *Hook {
+func NewLocal(logger *log.Logger) *Hook {
 
 	hook := new(Hook)
 	logger.Hooks.Add(hook)
@@ -39,28 +39,28 @@ func NewLocal(logger *logrus.Logger) *Hook {
 }
 
 // NewNullLogger creates a discarding logger and installs the test hook.
-func NewNullLogger() (*logrus.Logger, *Hook) {
+func NewNullLogger() (*log.Logger, *Hook) {
 
-	logger := logrus.New()
+	logger := log.New()
 	logger.Out = ioutil.Discard
 
 	return logger, NewLocal(logger)
 
 }
 
-func (t *Hook) Fire(e *logrus.Entry) error {
+func (t *Hook) Fire(e *log.Entry) error {
 	t.mu.Lock()
 	defer t.mu.Unlock()
 	t.Entries = append(t.Entries, *e)
 	return nil
 }
 
-func (t *Hook) Levels() []logrus.Level {
-	return logrus.AllLevels
+func (t *Hook) Levels() []log.Level {
+	return log.AllLevels
 }
 
 // LastEntry returns the last entry that was logged or nil.
-func (t *Hook) LastEntry() *logrus.Entry {
+func (t *Hook) LastEntry() *log.Entry {
 	t.mu.RLock()
 	defer t.mu.RUnlock()
 	i := len(t.Entries) - 1
@@ -71,11 +71,11 @@ func (t *Hook) LastEntry() *logrus.Entry {
 }
 
 // AllEntries returns all entries that were logged.
-func (t *Hook) AllEntries() []*logrus.Entry {
+func (t *Hook) AllEntries() []*log.Entry {
 	t.mu.RLock()
 	defer t.mu.RUnlock()
 	// Make a copy so the returned value won't race with future log requests
-	entries := make([]*logrus.Entry, len(t.Entries))
+	entries := make([]*log.Entry, len(t.Entries))
 	for i := 0; i < len(t.Entries); i++ {
 		// Make a copy, for safety
 		entries[i] = &t.Entries[i]
@@ -87,5 +87,5 @@ func (t *Hook) AllEntries() []*logrus.Entry {
 func (t *Hook) Reset() {
 	t.mu.Lock()
 	defer t.mu.Unlock()
-	t.Entries = make([]logrus.Entry, 0)
+	t.Entries = make([]log.Entry, 0)
 }

@@ -3,8 +3,8 @@ package log_test
 import (
 	"testing"
 
-	log "github.com/uncle-gua/log"
 	"github.com/stretchr/testify/assert"
+	log "github.com/uncle-gua/log"
 )
 
 func TestLogger_LogFn(t *testing.T) {

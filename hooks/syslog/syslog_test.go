@@ -10,7 +10,7 @@ import (
 )
 
 func TestLocalhostAddAndPrint(t *testing.T) {
-	log := logrus.New()
+	log := log.New()
 	hook, err := NewSyslogHook("udp", "localhost:514", syslog.LOG_INFO, "")
 
 	if err != nil {

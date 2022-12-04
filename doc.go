@@ -1,25 +1,25 @@
 /*
 package log is a structured logger for Go, completely API compatible with the standard library logger.
 
+The simplest way to use log is simply the package-level exported logger:
 
-The simplest way to use Logrus is simply the package-level exported logger:
+	package main
 
-  package main
+	import (
+	  log "github.com/uncle-gua/log"
+	)
 
-  import (
-    log "github.com/uncle-gua/log"
-  )
-
-  func main() {
-    log.WithFields(log.Fields{
-      "animal": "walrus",
-      "number": 1,
-      "size":   10,
-    }).Info("A walrus appears")
-  }
+	func main() {
+	  log.WithFields(log.Fields{
+	    "animal": "walrus",
+	    "number": 1,
+	    "size":   10,
+	  }).Info("A walrus appears")
+	}
 
 Output:
-  time="2015-09-07T08:48:33Z" level=info msg="A walrus appears" animal=walrus number=1 size=10
+
+	time="2015-09-07T08:48:33Z" level=info msg="A walrus appears" animal=walrus number=1 size=10
 
 For a full guide visit https://github.com/uncle-gua/log
 */
